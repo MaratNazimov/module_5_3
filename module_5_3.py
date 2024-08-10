@@ -11,9 +11,8 @@ class House:
                 print("Такого этажа не существует")
 
     def __eq__(self, other):
-        print(isinstance(other, int))
-        print(isinstance(other, House))
-        return self.number_of_floors == other.number_of_floors
+        if isinstance(other, int) or isinstance(other, House):
+            return self.number_of_floors == other.number_of_floors
 
     def __len__(self):
         return self.number_of_floors
@@ -37,10 +36,9 @@ class House:
         return self.number_of_floors >= other.number_of_floors
 
     def __add__(self, other):
-        print(isinstance(other, int))
-        print(isinstance(other, House))
-        self.number_of_floors += other
-        return self
+        if isinstance(other, int) or isinstance(other, House):
+            self.number_of_floors += other
+            return self
 
 
 House_1 = House('ЖК Горский', 18)
