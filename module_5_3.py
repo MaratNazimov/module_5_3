@@ -3,13 +3,6 @@ class House:
         self.name = name
         self.number_of_floors = number_of_floors
 
-    def go_to(self, new_floor):
-        if self.number_of_floors > new_floor > 1:
-            for i in range(1, new_floor + 1):
-                print(i)
-            else:
-                print("Такого этажа не существует")
-
     def __eq__(self, other):
         print(isinstance(other, House))
         if isinstance(other, House):
@@ -42,14 +35,16 @@ class House:
             self.number_of_floors += other
             return self
 
+    def __radd__(self, other):
+        return self + other
+
+    def __iadd__(self, other):
+        return self + other
+
 
 House_1 = House('ЖК Горский', 18)
 House_2 = House('Домик в деревне', 2)
 House_3 = House('ТК "Северный"', 4)
-
-House_1.go_to(5)
-House_2.go_to(10)
-House_3.go_to(3)
 
 print(str(House_1))
 print(str(House_2))
@@ -72,7 +67,7 @@ print(House_3 == House_1)
 House_1 += 3
 print(House_1)
 
-House_2 = House_2 + 1
+House_2 = 10 + House_2
 print(House_2)
 
 print(House_1 < House_3)
